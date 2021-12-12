@@ -272,7 +272,8 @@ CurrentAssessmentData %>%
             TEA_top4 = round(sum(head(PredictedScaled, 4)),1),
             bonus = round(sum(Ten_Percent_Bonus),1),
             TEA = round(sum(TEA_top4, bonus),1),
-            ATAR = round(ifelse(CountOfCourses >= 4, TEA * TEA * -0.0013 + 0.9662 * TEA - 78.311, 0),1)) -> ATARprediction
+            ATAR = round(ifelse(CountOfCourses >= 4 && TEA * TEA * -0.0013 + 0.9662 * TEA - 78.311 <= 99.95, TEA * TEA * -0.0013 + 0.9662 * TEA - 78.311,
+                                ifelse (CountOfCourses >= 4 && TEA * TEA * -0.0013 + 0.9662 * TEA - 78.311 > 99.95,99.95, 0)),2)) -> ATARprediction
 
 write_csv(ATARprediction, "ATAR_Predictions_by_semester.csv")
 
