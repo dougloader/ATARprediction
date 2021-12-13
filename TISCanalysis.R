@@ -278,5 +278,3 @@ CurrentAssessmentData %>%
 write_csv(ATARprediction, "ATAR_Predictions_by_semester.csv")
 
 write_csv(CurrentAssessmentData, "CurrentAssessmentData_by_semester.csv")
-
-CurrentAssessmentData
