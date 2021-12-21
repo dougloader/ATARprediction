@@ -245,6 +245,10 @@ CurrentAssessmentData %>%
 CurrentAssessmentData %>% 
   select(StudentName:School_Assessment) %>% 
   cbind(predictedCol) -> CurrentAssessmentData
+                      
+## Change NA values to Course outcome values in the case of no previous course data.
+CurrentAssessmentData %>% 
+  mutate(Predicted_Scaled_Score = coalesce(Predicted_Scaled_Score,School_Assessment)) -> CurrentAssessmentData
 
 
 #######################
